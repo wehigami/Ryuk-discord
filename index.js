@@ -24,19 +24,19 @@ client.once('ready', (message) => {
 let job1 = new cron.CronJob('00 00 13,18 * * *',() => {
     console.log("reminder sent");
     let channel = client.channels.cache.get('697243394098987089');
-    channel.send(`<@&795832386108653608> i co kurwa panienki? 🤦‍♀️ Dzienne przypomnienie rozciągajcie plecy 😂, w szczególności dolną partię  https://youtu.be/QumlJTVhVCc?t=274 \nhttps://www.youtube.com/watch?v=8otTdS5DhE4 \nhttps://www.youtube.com/watch?v=RqcOCBb4arc&t=472s \ni pamiętajcie żeby pić wodę 🥤`);
+    channel.send(`msg`);
 });
 
 let job2 = new cron.CronJob('00 30 18 * * *',() => {
     console.log("reminder sent");
     let channel = client.channels.cache.get('697243394098987089');
-    channel.send(`<@&795832386108653608> i co kurwa panienki? 🙎‍♀️ Trening zrobiony? 💪 Ja już zrobiłem. 😎🤙 Teraz wasza kolej. 👉🤓`);
+    channel.send(`msg`);
 });
 
 client.on("message", (message) => {
     // this is an utterly retarded way of coding but switch didn't work and I can't be bothered to fix it
-    if (message.content.includes('savdol') || message.content.includes('Savdol')) {
-        message.channel.send('to chuj')
+    if (message.content.includes('one') || message.content.includes('One')) {
+        message.channel.send('1')
     }
 });
 
@@ -49,10 +49,6 @@ mongoose.connect(process.env.MONGODBSRV, {
 }).catch((err) => {
     console.log('Database error:' + err);
 })
-/*for(i = 0; i < 3; i++) {
-    ms(1000);
-    message.channel.send('123')
-}*/
 
 job1.start();
 job2.start();
