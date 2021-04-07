@@ -2,8 +2,9 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
     name: 'pfp',
+    aliases: [],
     description: "sends your profile picture",
-    execute(client, message, args){
+    execute(message,args, cmd, client, Discord){
         let member = message.mentions.users.first() 
 
         const embed = new MessageEmbed()

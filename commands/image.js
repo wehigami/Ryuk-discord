@@ -8,8 +8,9 @@ const google = new scraper ({
 
 module.exports = {
     name: 'image',
+    aliases: [],
     description: "get an image from the web",
-    async execute(client, message, args){
+    async execute(message,args, cmd, client, Discord){
         const imageQuery = args.join(' ');
         if(!imageQuery) return message.channel.send('enter image name');
 

@@ -1,7 +1,8 @@
 module.exports = {
     name: 'prune',
+    aliases: [],
     description: "deletes a number of messages",
-    async execute(client, message, args) {
+    async execute(message,args, cmd, client, Discord) {
         if (message.member.roles.cache.has('697243393658585200')) {
             if (!args[0]) return message.reply("wpisz ile wiadomości ma zostać usuniętych");
             if (isNaN(args[0])) return message.reply("Wpisz liczbę.");
@@ -19,7 +20,8 @@ module.exports = {
                 .catch(console.error);
 
         } else {
-            message.channel.send("Permission error");
+            message.channel.send("Error permisji");
         }
     }
 }
+

@@ -1,11 +1,14 @@
 const Discord = require('discord.js');
 const cron = require('cron');
+const mongoose = require('mongoose');
+const ms = require('ms');
 require('dotenv').config();
 const client = new Discord.Client({partials: ["MESSAGE", "CHANNEL", "REACTION"]});
 client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
 
-client.once('ready', () => {
+
+client.once('ready', (message) => {
     console.log('Hisoka has arrived.');
 
     client.user.setActivity("🍎 r!help 🍎", {type: "WATCHING"})
@@ -36,7 +39,20 @@ client.on("message", (message) => {
         message.channel.send('to chuj')
     }
 });
-    
+
+mongoose.connect(process.env.MONGODBSRV, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+}).then(() => {
+    console.log('Connected to the database');
+}).catch((err) => {
+    console.log('Database error:' + err);
+})
+/*for(i = 0; i < 3; i++) {
+    ms(1000);
+    message.channel.send('123')
+}*/
 
 job1.start();
 job2.start();

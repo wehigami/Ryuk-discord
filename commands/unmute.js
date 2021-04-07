@@ -1,7 +1,8 @@
 module.exports = {
     name: 'unmute',
+    aliases: [],
     description: "unmutes a user",
-    execute(client, message, args){
+    execute(message,args, cmd, client, Discord){
         if (message.member.roles.cache.has('697243393658585200')) {
             const target = message.mentions.users.first();
             if (target) {

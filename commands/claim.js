@@ -1,3 +1,4 @@
+// TODO debuuug, instead of checking the entire channel for reaction check just the message etc.
 const scraper = require('images-scraper')
 
 const google = new scraper({
@@ -14,8 +15,9 @@ require('dotenv').config();
 
 module.exports = {
     name: 'claim',
+    aliases: [],
     description: "claim your waifu/husbando!",
-    async execute(client, message, args, Discord) {
+    async execute(message,args, cmd, client, Discord) {
 
         let url = 'http://www.animecharactersdatabase.com/api_series_characters.php?character_q=';
         let emojis = ['☄️', '🦒', '🐳', '🐙', '🐒', '🤡', '👻', '🎃', '🐵', '🙈'];
@@ -46,7 +48,7 @@ module.exports = {
         const response = await fetch(url, {
             method: 'GET',
             headers: {
-                'User-Agent': 'Your user agent'
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36'
             }
         })
         var data = await response.json();
@@ -61,7 +63,7 @@ module.exports = {
         }
         catch (err) {
             console.log(err);
-            message.channel.send("There was an error while getting the response");
+            message.channel.send("There was an Error");
         }
 
 
@@ -119,7 +121,7 @@ module.exports = {
                 if (user.bot) return;
                 if (!reaction.message.guild) return;
 
-                if (reaction.message.channel.id == '697243394098987088') { //hardcoded since Im only using the bot on my server, its also really easy to get user input for this
+                if (reaction.message.channel.id == '697243394098987088') {
 
                     for (let i = 0; i < emojis.length; i++) {
                         if (reaction.emoji.name === emojis[i])
@@ -131,11 +133,16 @@ module.exports = {
                 }
             })
         } else {
-            message.channel.send(claimMsg(0));
+            if (waifuGender == 'Male') {
+                message.channel.send(claimMsg(0));
+            } else {
+                message.channel.send(claimMsg(0));
+            }
+
         }
 
 
-        //TODO follow who claimed what in a database. If the character is claimed restrict the claim for it
+        //TODO sledzic w databasie kto co sclaimowal itd.
 
 
     }

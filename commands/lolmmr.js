@@ -4,8 +4,9 @@ let url = 'https://eune.whatismymmr.com/api/v1/summoner?name=';
 
 module.exports = {
     name: 'lolmmr',
+    aliases: [],
     description: "check your league mmr",
-    async execute(client, message, args) {
+    async execute(message,args, cmd, client, Discord) {
 
         if (!args.length) {
             return message.channel.send("You need to give me a player");
@@ -34,7 +35,7 @@ module.exports = {
         const response = await fetch(url, {
             method: 'GET',
             headers: {
-                'User-Agent': 'Your user agent'
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36'
             }
         })
         var data = await response.json();
@@ -48,7 +49,7 @@ module.exports = {
             }
         } catch(err) {
             console.log(err);
-            message.channel.send("There was an error with the response");
+            message.channel.send("There was an Error");
         }
         
 

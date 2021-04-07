@@ -1,8 +1,9 @@
 
 module.exports = {
     name: 'pick',
+    aliases: [],
     description: "picks a random number",
-    execute(client, message, args) {
+    execute(message,args, cmd, client, Discord) {
 
         if (!args[0]) return message.reply("Wpisz coś");
         if (isNaN(args[0])) return message.reply("Podaj liczbę chuju");
